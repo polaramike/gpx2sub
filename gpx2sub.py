@@ -23,7 +23,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from geographiclib.geodesic import Geodesic
 
-version = '0.1'
+version = '0.2'
 
 # configuration
 #
@@ -36,6 +36,12 @@ timestart = 0
 timelen = 19
 # Format of date & time in filename of the .sub file
 timefmt = '%Y-%m-%d_%H,%M,%S'
+# Here you can define the identifier/header for the latitude that gpx2sub writes into 
+# the .sub file. The Momentum firmware writes 'Latitute' instead of 'Latitude', so
+# here you can decide if you're compatible or correct :-D.
+MMTMlat = 'Latitute'
+#MMTMlat = 'Latitude'
+
 
 # Got the interpolation function from 
 # https://datascience.stackexchange.com/questions/113077/interpolate-a-point-in-time-for-two-given-geolocations-and-their-times-in-python
@@ -147,7 +153,7 @@ def updatesub(flippath, flat, flon):
         if not 'itude' in line and not 'itute' in line and not 'google' in line:
             # place Lat/Lon before the 'Ptotocol' line
             if 'Protocol' in line:
-                flipfile.write('Latitude: '+str(flat)+'\n')
+                flipfile.write(MMTMlat+': '+str(flat)+'\n')
                 flipfile.write('Longitude: '+str(flon)+'\n')
             flipfile.write(line+'\n')
     # write a Google Maps link as comment at the end of the file
