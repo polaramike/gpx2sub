@@ -1,4 +1,4 @@
-# gpx2sub
+# gpx2sub for FlipperZero SubGhz
 Geotag Flipper Zero SubGhz files with a GPX track
 
 
